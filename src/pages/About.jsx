@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 import Footer from '../components/Footer/Footer';
 import Navbar from '../components/Navbar/Navbar';
+import { DataContext } from '../context/dataContext';
 
 const About = () => {
+    const data = useContext(DataContext);
+    console.log(data);
     useEffect(() => {
         AOS.init();
     }, []);

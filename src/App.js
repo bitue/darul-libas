@@ -5,6 +5,9 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Products from './pages/Products';
 import Checkout from './pages/Checkout';
+import { DataContextProvider } from './context/dataContext';
+import ProductDetails from './pages/ProductDetails';
+import Dashboard from './pages/dashboard';
 
 const router = createBrowserRouter([
     {
@@ -23,15 +26,27 @@ const router = createBrowserRouter([
         path: '/checkout',
         element: <Checkout />
     },
+    {
+        path: '/product/details',
+        element: <ProductDetails />
+    },
 
     {
         path: '/product',
         element: <Products />
+    },
+    {
+        path: '/dashboard',
+        element: <Dashboard />
     }
 ]);
 
 function App() {
-    return <RouterProvider router={router} />;
+    return (
+        <DataContextProvider>
+            <RouterProvider router={router} />
+        </DataContextProvider>
+    );
 }
 
 export default App;

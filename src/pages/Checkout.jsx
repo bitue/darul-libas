@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 import CheckoutCart from '../components/CheckoutCart/CheckoutCart';
 import { useForm } from 'react-hook-form';
+import { DataContext } from '../context/dataContext';
 
 const Checkout = () => {
+    // hook form func
     const { register, handleSubmit } = useForm();
     const onSubmit = (data) => console.log(data);
+    // context api
+    const { productList, setProductList } = useContext(DataContext);
+    // now do api call to backend by the product id
+
+    // api call then render the product cart
+
+    const sum = productList.reduce((accumulator, currentValue) => {
+        return accumulator + Number(currentValue.price);
+    }, 0);
 
     return (
         <div>
@@ -21,7 +32,7 @@ const Checkout = () => {
                                     Shopping Cart
                                 </h2>
                                 <h2 class="font-manrope font-bold text-xl leading-8 text-white">
-                                    3 Items
+                                    {productList.length} Items
                                 </h2>
                             </div>
                             <div class="grid grid-cols-12 mt-8 max-md:hidden pb-6 border-b border-gray-200">
@@ -45,8 +56,9 @@ const Checkout = () => {
                                     </div>
                                 </div>
                             </div>
-
-                            <CheckoutCart></CheckoutCart>
+                            {productList.map((ele) => {
+                                return <CheckoutCart data={ele}></CheckoutCart>;
+                            })}
 
                             <div class="flex items-center justify-end mt-8">
                                 <button class="flex items-center px-5 py-3 rounded-full gap-2 border-none outline-0 group font-semibold text-lg leading-8 text-indigo-600 shadow-sm shadow-transparent transition-all duration-500 hover:text-indigo-700">
@@ -75,8 +87,10 @@ const Checkout = () => {
                             </h2>
                             <div class="mt-8">
                                 <div class="flex items-center justify-between pb-6">
-                                    <p class="font-normal text-lg leading-8 text-black">3 Items</p>
-                                    <p class="font-medium text-lg leading-8 text-black">$480.00</p>
+                                    <p class="font-normal text-lg leading-8 text-black">
+                                        {productList.length} Items
+                                    </p>
+                                    <p class="font-medium text-lg leading-8 text-black">{sum} Tk</p>
                                 </div>
                                 <form onSubmit={handleSubmit(onSubmit)}>
                                     <label class="flex  items-center mb-1.5 text-black text-sm font-medium">
@@ -160,10 +174,10 @@ const Checkout = () => {
                                     </div>
                                     <div class="flex items-center justify-between py-8">
                                         <p class="font-medium text-xl leading-8 text-black">
-                                            3 Items
+                                            {productList.length} Items
                                         </p>
                                         <p class="font-semibold text-xl leading-8 text-indigo-600">
-                                            $485.00
+                                            {sum} TK
                                         </p>
                                     </div>
                                     <p class="font-semibold text-xl leading-8 text-indigo-600">
