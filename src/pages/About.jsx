@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import Navbar from '../components/Navbar/Navbar';
+
 import Footer from '../components/Footer/Footer';
+import Navbar from '../components/Navbar/Navbar';
 
 const About = () => {
     useEffect(() => {
@@ -12,7 +13,7 @@ const About = () => {
     return (
         <>
             <div>
-                <Navbar></Navbar>
+                <Navbar />
             </div>
             <div className="hero" data-aos="fade-up">
                 <div className="hero-content flex-col lg:flex-row">

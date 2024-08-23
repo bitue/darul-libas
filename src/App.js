@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Products from './pages/Products';
+import Checkout from './pages/Checkout';
 
 const router = createBrowserRouter([
     {
@@ -18,6 +19,11 @@ const router = createBrowserRouter([
         path: '/contact',
         element: <Contact />
     },
+    {
+        path: '/checkout',
+        element: <Checkout />
+    },
+
     {
         path: '/product',
         element: <Products />
