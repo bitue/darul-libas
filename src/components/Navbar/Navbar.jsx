@@ -7,7 +7,7 @@ import { DataContext } from '../../context/dataContext';
 const Navbar = () => {
     const { productList, setProductList } = useContext(DataContext);
     const sum = productList.reduce((accumulator, currentValue) => {
-        return accumulator + Number(currentValue.price);
+        return accumulator + Number(currentValue.productPrice * currentValue.qty);
     }, 0);
     return (
         <div>

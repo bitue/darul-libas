@@ -11,12 +11,13 @@ const Checkout = () => {
     const onSubmit = (data) => console.log(data);
     // context api
     const { productList, setProductList } = useContext(DataContext);
+    console.log(productList, 'form checkout final ...........');
     // now do api call to backend by the product id
 
     // api call then render the product cart
 
     const sum = productList.reduce((accumulator, currentValue) => {
-        return accumulator + Number(currentValue.price);
+        return accumulator + Number(currentValue.productPrice * currentValue.qty);
     }, 0);
 
     return (

@@ -1,20 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const CheckoutCart = ({ data }) => {
-    console.log(data, 'data');
+    console.log(data, 'data---------------------');
+
+    // context api data value here
+    const { qty, productPrice, productName, productImg, productId, orderSize } = data;
+    const [checkQty, setCheckQty] = useState(qty);
+    // update the value by product id
+
     return (
         <div>
             <div class="flex flex-col min-[500px]:flex-row min-[500px]:items-center gap-5 py-6  border-b border-gray-200 group">
                 <div class="w-full md:max-w-[126px]">
-                    <img src={data.img} alt="perfume bottle image" class="mx-auto rounded-xl" />
+                    <img src={productImg} alt="perfume bottle image" class="mx-auto rounded-xl" />
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-4 w-full">
                     <div class="md:col-span-2">
                         <div class="flex flex-col max-[500px]:items-center gap-3">
-                            <h6 class="font-semibold text-base leading-7 text-white">{data.id}</h6>
-                            <h6 class="font-normal text-base leading-7 text-white">Perfumes</h6>
+                            <h6 class="font-semibold text-base leading-7 text-white">
+                                product Id : {productId}
+                            </h6>
+                            <h6 class="font-normal text-base leading-7 text-white">
+                                Name : {productName}
+                            </h6>
                             <h6 class="font-medium text-base leading-7 text-white transition-all duration-300 group-hover:text-indigo-600">
-                                {data.price} Tk
+                                {productPrice} Tk
                             </h6>
                         </div>
                     </div>
@@ -54,7 +64,7 @@ const CheckoutCart = ({ data }) => {
                             <input
                                 type="text"
                                 class="border-y border-gray-200 outline-none text-white font-semibold text-lg w-full max-w-[73px] min-w-[60px] placeholder:text-white py-[15px]  text-center bg-transparent"
-                                placeholder="1"
+                                placeholder={qty}
                             />
                             <button class="group rounded-r-xl px-5 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500 hover:bg-gray-50 hover:border-gray-300 hover:shadow-gray-300 focus-within:outline-gray-300">
                                 <svg
@@ -91,7 +101,7 @@ const CheckoutCart = ({ data }) => {
                     </div>
                     <div class="flex items-center max-[500px]:justify-center md:justify-end max-md:mt-3 h-full">
                         <p class="font-bold text-lg leading-8 text-white-600 text-center transition-all duration-300 group-hover:text-indigo-600">
-                            {data.price}Tk
+                            {productPrice * qty}Tk
                         </p>
                     </div>
                 </div>
