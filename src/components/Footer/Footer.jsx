@@ -60,6 +60,11 @@ const Footer = () => {
                         </a>
                     </div>
                 </nav>
+                <div className="w-full flex  justify-end">
+                    <a href="https://wa.me/+8801312535319" className="">
+                        <img src="waa.png" alt="" className="w-20 block text-right" />
+                    </a>
+                </div>
             </footer>
         </div>
     );
