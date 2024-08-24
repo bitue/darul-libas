@@ -8,6 +8,7 @@ import Checkout from './pages/Checkout';
 import { DataContextProvider } from './context/dataContext';
 import ProductDetails from './pages/ProductDetails';
 import Dashboard from './pages/dashboard';
+import { ToastContainer } from 'react-toastify';
 
 const router = createBrowserRouter([
     {
@@ -45,6 +46,7 @@ function App() {
     return (
         <DataContextProvider>
             <RouterProvider router={router} />
+            <ToastContainer></ToastContainer>
         </DataContextProvider>
     );
 }

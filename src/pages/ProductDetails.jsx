@@ -3,6 +3,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 import { DataContext } from '../context/dataContext';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const ProductDetails = () => {
     const Location = useLocation();
@@ -36,6 +38,13 @@ const ProductDetails = () => {
             productPrice: price
         };
         // this time productList updated
+        if (value <= 0) {
+            toast('please add Quantity ');
+            return;
+        }
+        // if (size ){
+
+        // }
         setProductList([...productList, addProductInfo]);
         navigate('/checkout');
     };
@@ -256,6 +265,28 @@ const ProductDetails = () => {
                                             />
                                         </svg>
                                     </button>
+                                </div>
+                                <div class="mb-4">
+                                    <span class="font-bold text-black dark:text-gray-300">
+                                        Select Size:
+                                    </span>
+                                    <div class="flex items-center mt-2">
+                                        <button class="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
+                                            S
+                                        </button>
+                                        <button class="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
+                                            M
+                                        </button>
+                                        <button class="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
+                                            L
+                                        </button>
+                                        <button class="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
+                                            XL
+                                        </button>
+                                        <button class="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
+                                            XXL
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
 
