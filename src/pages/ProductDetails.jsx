@@ -87,7 +87,7 @@ const ProductDetails = () => {
                                     src="https://images.unsplash.com/photo-1528148343865-51218c4a13e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwzfHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080"
                                     alt="Thumbnail 4"
                                     className="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
-                                    onClick={handleChangeSrc}
+                                    onClick={(e) => handleChangeSrc(e)}
                                 />
                             </div>
                         </div>
