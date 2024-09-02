@@ -61,6 +61,22 @@ const dashboard = () => {
                             </li>
                             <li>
                                 <Link
+                                    to="/dashboard/addCategories"
+                                    className="my-2 flex items-center text-[17px] py-1.5 px-4 text-white hover:text-blue-black hover:bg-indigo-950"
+                                >
+                                    Add Categories
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
+                                    to="/dashboard/allCategories"
+                                    className="my-2 flex items-center text-[17px] py-1.5 px-4 text-white hover:text-blue-black hover:bg-indigo-950"
+                                >
+                                    All Categories
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
                                     to="/dashboard/"
                                     className="my-2 flex items-center text-[17px] py-1.5 px-4 text-white hover:text-blue-black hover:bg-indigo-950"
                                 >
@@ -70,7 +86,7 @@ const dashboard = () => {
                         </ul>
                     </div>
                 </div>
-                <div className=" mx-5 h-full ">
+                <div className=" mx-5 h-full w-9/12 ">
                     <Outlet></Outlet>
                 </div>
             </div>

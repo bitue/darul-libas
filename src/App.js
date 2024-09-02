@@ -109,6 +109,8 @@ import AdminProfile from './pages/dashboardPages/AdminProfile';
 import Orders from './pages/dashboardPages/Orders';
 import ProductsViewAdmin from './pages/dashboardPages/ProductsViewAdmin';
 import SuccessfulOrders from './pages/dashboardPages/SuccessfulOrders';
+import AllCategories from './pages/dashboardPages/AllCategories';
+import AddCategories from './pages/dashboardPages/AddCategories';
 
 const router = createBrowserRouter([
     {
@@ -150,6 +152,14 @@ const router = createBrowserRouter([
             {
                 path: 'addProducts',
                 element: <AddProducts />
+            },
+            {
+                path: 'addCategories',
+                element: <AddCategories />
+            },
+            {
+                path: 'allCategories',
+                element: <AllCategories />
             },
             {
                 path: 'createAdmin',

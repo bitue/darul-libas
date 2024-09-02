@@ -7,19 +7,32 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const ProductDetails = () => {
+    const [selectedSize, setSelectedSize] = useState('');
+
+    const handleSizeChange = (event) => {
+        setSelectedSize(event.target.value);
+    };
+
     const Location = useLocation();
     console.log(Location.state, 'info from product');
-    const { productImgList, productId, productName, price, star, review, description, features } =
-        Location.state;
+    const {
+        productImgList,
+        productId,
+        productName,
+        productPrice,
+        star,
+        size,
+        reviews,
+        description,
+        features
+    } = Location.state;
 
     const navigate = useNavigate();
 
     // place holder value change
     const [value, setValue] = useState(0);
 
-    const [imgSrc, setImgSrc] = useState(
-        'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxfHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080'
-    );
+    const [imgSrc, setImgSrc] = useState(productImgList[0]);
     const handleChangeSrc = (event) => {
         // console.log(event.target.src);
         setImgSrc(event.target.src);
@@ -34,8 +47,8 @@ const ProductDetails = () => {
             qty: value,
             productName: productName,
             productId: productId,
-            orderSize: 'XL',
-            productPrice: price
+            orderSize: selectedSize,
+            productPrice
         };
         // this time productList updated
         if (value <= 0) {
@@ -65,30 +78,16 @@ const ProductDetails = () => {
                                 onClick={(e) => handleChangeSrc(e)}
                             />
                             <div className="flex gap-4 py-4 justify-center overflow-x-auto">
-                                <img
-                                    src="https://images.unsplash.com/photo-1505751171710-1f6d0ace5a85?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwxMnx8aGVhZHBob25lfGVufDB8MHx8fDE3MjEzMDM2OTB8MA&ixlib=rb-4.0.3&q=80&w=1080"
-                                    alt="Thumbnail 1"
-                                    className="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
-                                    onClick={(e) => handleChangeSrc(e)}
-                                />
-                                <img
-                                    src="https://images.unsplash.com/photo-1484704849700-f032a568e944?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw0fHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080"
-                                    alt="Thumbnail 2"
-                                    className="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
-                                    onClick={(e) => handleChangeSrc(e)}
-                                />
-                                <img
-                                    src="https://images.unsplash.com/photo-1496957961599-e35b69ef5d7c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw4fHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080"
-                                    alt="Thumbnail 3"
-                                    className="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
-                                    onClick={(e) => handleChangeSrc(e)}
-                                />
-                                <img
-                                    src="https://images.unsplash.com/photo-1528148343865-51218c4a13e6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHwzfHxoZWFkcGhvbmV8ZW58MHwwfHx8MTcyMTMwMzY5MHww&ixlib=rb-4.0.3&q=80&w=1080"
-                                    alt="Thumbnail 4"
-                                    className="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
-                                    onClick={(e) => handleChangeSrc(e)}
-                                />
+                                {productImgList.map((ele) => {
+                                    return (
+                                        <img
+                                            src={ele}
+                                            alt="Thumbnail 1"
+                                            className="size-16 sm:size-20 object-cover rounded-md cursor-pointer opacity-60 hover:opacity-100 transition duration-300"
+                                            onClick={(e) => handleChangeSrc(e)}
+                                        />
+                                    );
+                                })}
                             </div>
                         </div>
 
@@ -96,71 +95,28 @@ const ProductDetails = () => {
                             <h2 className="text-3xl font-bold mb-2">{productName}</h2>
                             <p className="text-gray-600 mb-4">{productId}</p>
                             <div className="mb-4">
-                                <span className="text-2xl font-bold mr-2">{price} TK</span>
+                                <span className="text-2xl font-bold mr-2">{productPrice} TK</span>
                             </div>
                             <div className="flex items-center mb-4">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="currentColor"
-                                    className="size-6 text-yellow-500"
-                                >
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                                        clip-rule="evenodd"
-                                    />
-                                </svg>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="currentColor"
-                                    className="size-6 text-yellow-500"
-                                >
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                                        clip-rule="evenodd"
-                                    />
-                                </svg>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="currentColor"
-                                    className="size-6 text-yellow-500"
-                                >
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                                        clip-rule="evenodd"
-                                    />
-                                </svg>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="currentColor"
-                                    className="size-6 text-yellow-500"
-                                >
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                                        clip-rule="evenodd"
-                                    />
-                                </svg>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="currentColor"
-                                    className="size-6 text-yellow-500"
-                                >
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
-                                        clip-rule="evenodd"
-                                    />
-                                </svg>
+                                {Array.from({ length: star }).map((_, index) => (
+                                    <div key={index}>
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 24 24"
+                                            fill="currentColor"
+                                            className="size-6 text-yellow-500"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                                                clip-rule="evenodd"
+                                            />
+                                        </svg>
+                                    </div>
+                                ))}
+
                                 <span className="ml-2 text-gray-600">
-                                    {star} ({review} reviews)
+                                    {star} ({reviews} reviews)
                                 </span>
                             </div>
                             <p className="text-gray-700 mb-6">{description}</p>
@@ -271,21 +227,18 @@ const ProductDetails = () => {
                                         Select Size:
                                     </span>
                                     <div class="flex items-center mt-2">
-                                        <button class="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
-                                            S
-                                        </button>
-                                        <button class="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
-                                            M
-                                        </button>
-                                        <button class="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
-                                            L
-                                        </button>
-                                        <button class="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
-                                            XL
-                                        </button>
-                                        <button class="bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-white py-2 px-4 rounded-full font-bold mr-2 hover:bg-gray-400 dark:hover:bg-gray-600">
-                                            XXL
-                                        </button>
+                                        <select
+                                            className="select select-primary block my-4  h-11 pr-11 pl-5 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-white border border-gray-300 rounded-lg placeholder-gray-500 focus:outline-gray-400 "
+                                            value={selectedSize}
+                                            onChange={handleSizeChange}
+                                        >
+                                            <option disabled selected>
+                                                Please Select Size
+                                            </option>
+                                            {size.map((ele) => {
+                                                return <option value={ele}>{ele}</option>;
+                                            })}
+                                        </select>
                                     </div>
                                 </div>
                             </div>

@@ -3,8 +3,17 @@ import { useNavigate } from 'react-router-dom';
 
 const Product = (props) => {
     const { data } = props;
-    const { productImgList, productId, productName, price, star, review, description, features } =
-        data;
+    const {
+        productImgList,
+        productName,
+        productPrice,
+        star,
+        reviews,
+        description,
+        features,
+        productStatus
+    } = data;
+    console.log(data, 'from product page ');
     // context api to get the main data
 
     const navigate = useNavigate();
@@ -14,7 +23,7 @@ const Product = (props) => {
 
     return (
         <div className="mx-3 my-5 p-2 ">
-            <div className="card bg-base-100 w-96 shadow-xl" data-aos="fade-in">
+            <div className="card bg-base-100 w-96 shadow-xl">
                 <div className="card bg-base-100 w-96 shadow-xl">
                     <figure>
                         <img src={productImgList[0]} alt="Shoes" />
@@ -25,8 +34,8 @@ const Product = (props) => {
                             {/* <div className="badge badge-secondary">Exclusive</div> */}
                         </h2>
                         <div className="flex justify-between">
-                            <p className="text-left">{price} Tk</p>
-                            <p className="text-right">In Stock</p>
+                            <p className="text-left">{productPrice} Tk</p>
+                            <p className="text-right">{productStatus}</p>
                         </div>
 
                         <div className="card-actions justify-between">
