@@ -78,6 +78,7 @@ const Checkout = () => {
         try {
             const response = await axios.post(url, payload, config);
             setRes(response.data);
+            //give it to order arrived page
             console.log(res);
             toast('Thank you For your order , we will contact with you soon');
         } catch ({ message }) {

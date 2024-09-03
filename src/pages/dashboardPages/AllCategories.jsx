@@ -58,6 +58,7 @@ const AllCategories = () => {
                 <p>I am loading ....</p>
             ) : (
                 <div>
+                    <p className="text-center text-3xl p-3">All Category page </p>
                     {cat.map((ele) => {
                         return (
                             <div className="card card-side bg-base-100 shadow-xl my-5">
