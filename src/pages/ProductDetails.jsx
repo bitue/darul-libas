@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
@@ -41,6 +41,18 @@ const ProductDetails = () => {
 
     // context api to get the main data
     const { productList, setProductList } = useContext(DataContext);
+
+    // hash func
+
+    // inject hashId here
+    const generateHashId = () => {
+        const timestamp = Date.now().toString();
+        const randomNum = Math.random().toString(36).substring(2);
+        const hash = btoa(timestamp + randomNum);
+        return hash;
+    };
+    // _id + size +imgSrc
+
     // cart function
     const handleCart = () => {
         const addProductInfo = {
@@ -58,20 +70,10 @@ const ProductDetails = () => {
             toast('please add Quantity ');
             return;
         }
-        // if (size ){
-
-        // }
         if (!selectedSize) {
             toast('please select product size ');
             return;
         }
-        // inject hashId here
-        const generateHashId = () => {
-            const timestamp = Date.now().toString();
-            const randomNum = Math.random().toString(36).substring(2);
-            const hash = btoa(timestamp + randomNum);
-            return hash;
-        };
 
         const hashId = generateHashId();
         console.log(hashId);

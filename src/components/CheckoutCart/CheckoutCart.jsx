@@ -11,35 +11,45 @@ const CheckoutCart = ({ data }) => {
     // context api to get the main data
     const { productList, setProductList } = useContext(DataContext);
     console.log(productList, ' checkout ---------------------------');
-    const [checkQty, setCheckQty] = useState(qty);
-    const handleChangeQty = (id, val, sign) => {
-        if (sign === '+') {
-            setCheckQty((pre) => {
-                const new_pre = pre + 1;
-                const updatedState = productList.map((item) =>
-                    item.productId === id ? { ...item, qty: new_pre } : item
-                );
-                setProductList(updatedState);
-                return new_pre;
-            });
-        } else {
-            setCheckQty((pre) => {
-                let new_pre = 0;
-                if (pre > 0) {
-                    new_pre = pre - 1;
-                }
 
-                const updatedState = productList.map((item) =>
-                    item.productId === id ? { ...item, qty: new_pre } : item
-                );
-                setProductList(updatedState);
-                return new_pre;
+    // const [checkQty, setCheckQty] = useState(qty);
+
+    const handleChangeQty = (hid, sign) => {
+        console.log(hid, '>>>>>>>>>>>>>>>>>>product hashId');
+        let newList = [];
+
+        if (sign === '+') {
+            newList = productList.map((product) => {
+                if (product.hashId === hid) {
+                    const newQty = product.qty + 1;
+                    const newObj = { ...product, qty: newQty };
+                    return newObj;
+                }
+                return product;
+            });
+        } else if (sign === '-') {
+            newList = productList.map((product) => {
+                if (product.hashId === hid) {
+                    const newQty = Math.max(product.qty - 1, 0);
+                    const newObj = { ...product, qty: newQty };
+                    return newObj;
+                }
+                return product;
             });
         }
+
+        setProductList(newList);
     };
 
+    // const obj = {};
+
     const handleRemove = (idToRemove) => {
-        const updatedState = productList.filter((item) => item.hashId !== idToRemove);
+        // console.log(idToRemove)
+        const updatedState = productList.filter((item) => {
+            console.log(idToRemove, item.hashId);
+
+            return item.hashId !== idToRemove;
+        });
         setProductList(updatedState);
     };
     console.log(productList, '--------------------update-done -after -------------------');
@@ -87,7 +97,7 @@ const CheckoutCart = ({ data }) => {
                         <div class="flex items-center h-full">
                             <button
                                 class="group rounded-l-xl px-5 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500 hover:bg-gray-50 hover:border-gray-300 hover:shadow-gray-300 focus-within:outline-gray-300"
-                                onClick={() => handleChangeQty(productId, checkQty, '-')}
+                                onClick={() => handleChangeQty(hashId, '-')}
                             >
                                 <svg
                                     class="stroke-white transition-all duration-500 group-hover:stroke-indigo-600"
@@ -122,11 +132,11 @@ const CheckoutCart = ({ data }) => {
                             <input
                                 type="text"
                                 class="border-y border-gray-200 outline-none text-white font-semibold text-lg w-full max-w-[73px] min-w-[60px] placeholder:text-white py-[15px]  text-center bg-transparent"
-                                placeholder={checkQty}
+                                value={qty}
                             />
                             <button
                                 class="group rounded-r-xl px-5 py-[18px] border border-gray-200 flex items-center justify-center shadow-sm shadow-transparent transition-all duration-500 hover:bg-gray-50 hover:border-gray-300 hover:shadow-gray-300 focus-within:outline-gray-300"
-                                onClick={() => handleChangeQty(productId, checkQty, '+')}
+                                onClick={() => handleChangeQty(hashId, '+')}
                             >
                                 <svg
                                     class="stroke-white transition-all duration-500 group-hover:stroke-indigo-600"

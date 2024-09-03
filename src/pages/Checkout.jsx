@@ -1,14 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 import CheckoutCart from '../components/CheckoutCart/CheckoutCart';
 import { useForm } from 'react-hook-form';
 import { DataContext } from '../context/dataContext';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Checkout = () => {
     // hook form func
     const { register, handleSubmit } = useForm();
-    const onSubmit = (data) => console.log(data);
+    // delivery charge
+    const [selectedArea, setSelectedArea] = useState('Inside Dhaka');
+    // api res and error
+    const [err, setErr] = useState(null);
+    const [res, setRes] = useState(null);
+
     // context api
     const { productList, setProductList } = useContext(DataContext);
     console.log(productList, 'form checkout final ...........');
@@ -19,6 +26,67 @@ const Checkout = () => {
     const sum = productList.reduce((accumulator, currentValue) => {
         return accumulator + Number(currentValue.productPrice * currentValue.qty);
     }, 0);
+    const tt = selectedArea === 'Inside Dhaka' ? 50 + sum : 100 + sum;
+    const handleSelectArea = (e) => {
+        setSelectedArea(e.target.value);
+    };
+    const onSubmit = async (data) => {
+        console.log(data, productList);
+        const productInfoArray = [];
+        const { name, email, phone, address } = data;
+        for (const i of productList) {
+            const {
+                productPrice,
+                qty: productQty,
+                productImg,
+                productName,
+                productId,
+                orderSize: productSize
+            } = i;
+            productInfoArray.push({
+                productPrice,
+                productQty,
+                productImg,
+                productName,
+                productId,
+                productSize
+            });
+        }
+        console.log(data);
+
+        const url = 'http://localhost:5000/order/makeOrder';
+
+        const payload = {
+            name,
+            email,
+            phone,
+            address,
+            productInfoArray,
+            paymentStatus: 'Cash on Delivery',
+            areaStatus: selectedArea,
+            totalPrice: tt
+        };
+        console.log(payload, 'payload>>>>>>>>>>>>>>>>>>>>>>>>>>');
+
+        const config = {
+            headers: {
+                Authorization: 'Bearer YOUR_TOKEN_HERE',
+                'Content-Type': 'application/json'
+            }
+        };
+
+        try {
+            const response = await axios.post(url, payload, config);
+            setRes(response.data);
+            console.log(res);
+            toast('Thank you For your order , we will contact with you soon');
+        } catch ({ message }) {
+            setErr(message);
+            console.log(message);
+            toast(message);
+        } finally {
+        }
+    };
 
     return (
         <div>
@@ -125,7 +193,7 @@ const Checkout = () => {
                                         class="block my-2 w-full h-11 pr-11 pl-5 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-white border border-gray-300 rounded-lg placeholder-gray-500 focus:outline-gray-400 "
                                         placeholder="Enter Your Address"
                                     />
-                                    <div className="flex justify-between">
+                                    {/* <div className="flex justify-between">
                                         <label className="label cursor-pointer">
                                             <span className="text-black"> Outside Dhaka </span>
                                             <input
@@ -146,7 +214,24 @@ const Checkout = () => {
                                                 defaultChecked
                                             />
                                         </label>
-                                    </div>
+                                    </div> */}
+                                    <select
+                                        className="select select-primary block my-4 w-full h-11 pr-11 pl-5 py-2.5 text-base font-normal shadow-xs text-gray-900 bg-white border border-gray-300 rounded-lg placeholder-gray-500 focus:outline-gray-400 "
+                                        {...register('areaStatus')}
+                                        value={selectedArea}
+                                        onChange={handleSelectArea}
+                                    >
+                                        <option disabled selected>
+                                            Area Status
+                                        </option>
+
+                                        <option value="Inside Dhaka" key="Inside Dhaka">
+                                            Inside Dhaka
+                                        </option>
+                                        <option value="Outside Dhaka" key="Outside Dhaka">
+                                            Outside Dhaka
+                                        </option>
+                                    </select>
 
                                     <label class="flex items-center mb-1.5 text-gray-400 text-sm font-medium">
                                         Promo Code
@@ -173,12 +258,28 @@ const Checkout = () => {
                                             Apply
                                         </button>
                                     </div>
-                                    <div class="flex items-center justify-between py-8">
+                                    <div class="flex items-center justify-between py-3">
                                         <p class="font-medium text-xl leading-8 text-black">
                                             {productList.length} Items
                                         </p>
                                         <p class="font-semibold text-xl leading-8 text-indigo-600">
                                             {sum} TK
+                                        </p>
+                                    </div>
+                                    <div class="flex items-center justify-between py-3">
+                                        <p class="font-medium text-xl leading-8 text-black">
+                                            {selectedArea} delivery charge
+                                        </p>
+                                        <p class="font-semibold text-xl leading-8 text-indigo-600">
+                                            {selectedArea === 'Inside Dhaka' ? 50 : 100} TK
+                                        </p>
+                                    </div>
+                                    <div class="flex items-center justify-between py-3">
+                                        <p class="font-medium text-xl leading-8 text-black">
+                                            Total Price
+                                        </p>
+                                        <p class="font-semibold text-xl leading-8 text-indigo-600">
+                                            {tt} TK
                                         </p>
                                     </div>
                                     <p class="font-semibold text-xl leading-8 text-indigo-600">
