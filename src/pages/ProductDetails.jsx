@@ -17,7 +17,7 @@ const ProductDetails = () => {
     console.log(Location.state, 'info from product');
     const {
         productImgList,
-        productId,
+        _id: productId,
         productName,
         productPrice,
         star,
@@ -28,6 +28,7 @@ const ProductDetails = () => {
     } = Location.state;
 
     const navigate = useNavigate();
+    console.log(Location.state, '>>>>>>>>>>>>>>>>>>>>>>>>>>location.state');
 
     // place holder value change
     const [value, setValue] = useState(0);
@@ -50,6 +51,8 @@ const ProductDetails = () => {
             orderSize: selectedSize,
             productPrice
         };
+
+        console.log(addProductInfo, 'add product info >>>>>>>>>>>>>>>>>>>>>>>>');
         // this time productList updated
         if (value <= 0) {
             toast('please add Quantity ');
@@ -58,10 +61,27 @@ const ProductDetails = () => {
         // if (size ){
 
         // }
+        if (!selectedSize) {
+            toast('please select product size ');
+            return;
+        }
+        // inject hashId here
+        const generateHashId = () => {
+            const timestamp = Date.now().toString();
+            const randomNum = Math.random().toString(36).substring(2);
+            const hash = btoa(timestamp + randomNum);
+            return hash;
+        };
+
+        const hashId = generateHashId();
+        console.log(hashId);
+        addProductInfo.hashId = hashId; // hashId just use to tract to remove it
+
         setProductList([...productList, addProductInfo]);
+        console.log(productList, 'shopping cart >>>>>>>>>>>>>>>>>>>>>>>>');
         navigate('/checkout');
     };
-    // increase and decrease quantity func
+    // check that
 
     return (
         <div>
@@ -232,15 +252,28 @@ const ProductDetails = () => {
                                             value={selectedSize}
                                             onChange={handleSizeChange}
                                         >
-                                            <option disabled selected>
+                                            <option disabled value="">
                                                 Please Select Size
                                             </option>
                                             {size.map((ele) => {
-                                                return <option value={ele}>{ele}</option>;
+                                                return (
+                                                    <option key={ele} value={ele}>
+                                                        {ele}
+                                                    </option>
+                                                );
                                             })}
                                         </select>
                                     </div>
                                 </div>
+                            </div>
+
+                            <div>
+                                <h3 className="text-lg font-semibold mb-2">Key Features:</h3>
+                                <ul className="list-disc list-inside text-gray-700">
+                                    {features.map((ele) => {
+                                        return <li>{ele}</li>;
+                                    })}
+                                </ul>
                             </div>
 
                             <div className="flex space-x-4 mb-6">
@@ -281,15 +314,6 @@ const ProductDetails = () => {
                                     </svg>
                                     Wishlist
                                 </button> */}
-                            </div>
-
-                            <div>
-                                <h3 className="text-lg font-semibold mb-2">Key Features:</h3>
-                                <ul className="list-disc list-inside text-gray-700">
-                                    {features.map((ele) => {
-                                        return <li>{ele}</li>;
-                                    })}
-                                </ul>
                             </div>
                         </div>
                     </div>

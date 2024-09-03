@@ -13,7 +13,10 @@ const Product = (props) => {
         features,
         productStatus
     } = data;
-    console.log(data, 'from product page ');
+    console.log(
+        data,
+        'from product page -----------------------------------------------------------------------------------'
+    );
     // context api to get the main data
 
     const navigate = useNavigate();

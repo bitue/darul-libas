@@ -5,7 +5,7 @@ const CheckoutCart = ({ data }) => {
     console.log(data, 'data---------------------');
 
     // context api data value here
-    const { qty, productPrice, productName, productImg, productId, orderSize } = data;
+    const { qty, productPrice, productName, productImg, productId, orderSize, hashId } = data;
 
     // update the value by product id
     // context api to get the main data
@@ -39,7 +39,7 @@ const CheckoutCart = ({ data }) => {
     };
 
     const handleRemove = (idToRemove) => {
-        const updatedState = productList.filter((item) => item.productId !== idToRemove);
+        const updatedState = productList.filter((item) => item.hashId !== idToRemove);
         setProductList(updatedState);
     };
     console.log(productList, '--------------------update-done -after -------------------');
@@ -54,7 +54,7 @@ const CheckoutCart = ({ data }) => {
                         stroke-width="1.5"
                         stroke="currentColor"
                         class="size-6 group-hover:text-indigo-600 cursor-pointer"
-                        onClick={() => handleRemove(productId)}
+                        onClick={() => handleRemove(hashId)}
                     >
                         <path
                             stroke-linecap="round"
@@ -74,6 +74,9 @@ const CheckoutCart = ({ data }) => {
                             </h6>
                             <h6 class="font-normal text-base leading-7 text-white">
                                 Name : {productName}
+                            </h6>
+                            <h6 class="font-normal text-base leading-7 text-white">
+                                size : {orderSize}
                             </h6>
                             <h6 class="font-medium text-base leading-7 text-white transition-all duration-300 group-hover:text-indigo-600">
                                 {productPrice} Tk
