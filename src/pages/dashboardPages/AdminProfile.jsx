@@ -41,7 +41,7 @@ const AdminProfile = () => {
                                 <div className="card-body">
                                     <h2 className="card-title">{ele.admin}</h2>
                                     <p>{ele.phone}</p>
-                                    {ele.admin !== 'admin0' ? (
+                                    {/* {ele.admin !== 'admin0' ? (
                                         <div className="card-actions justify-end">
                                             <button className="btn btn-primary">
                                                 Delete Admin
@@ -49,7 +49,7 @@ const AdminProfile = () => {
                                         </div>
                                     ) : (
                                         ''
-                                    )}
+                                    )} */}
                                 </div>
                             </div>
                         );
