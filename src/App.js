@@ -112,6 +112,7 @@ import SuccessfulOrders from './pages/dashboardPages/SuccessfulOrders';
 import AllCategories from './pages/dashboardPages/AllCategories';
 import AddCategories from './pages/dashboardPages/AddCategories';
 import ChangePasswordAdmin from './pages/dashboardPages/ChangePasswordAdmin';
+import Auth from './components/Auth/Auth';
 
 const router = createBrowserRouter([
     {
@@ -144,7 +145,11 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <Dashboard />,
+        element: (
+            <Auth>
+                <Dashboard />{' '}
+            </Auth>
+        ),
         children: [
             {
                 path: '',

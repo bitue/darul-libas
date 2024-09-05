@@ -26,17 +26,20 @@ export const useToken = () => {
                 return;
             }
             setLoading(true); // got the token so loading is on to fetch user
-            const res = await axios.get('http://localhost:5000/public/getAdminByToken', {
+            const res = await axios.get('http://localhost:5000/auth/getAdminByToken', {
                 headers: {
-                    Authorization: `Bearer ${token}`
+                    Authorization: token
                 }
             });
-            const getAdmin = res.data;
+            const getAdmin = res.data.admin;
             setAdmin(getAdmin);
             console.log(getAdmin);
             setLoading(false); // got user or not but loading now false ;
         } catch (err) {
             // unauthorized user !!! need to add frontend page that unAuthorized msg !
+            console.log('admin not found');
+            setAdmin(null);
+            setToken(null);
             console.log(err.message);
         }
     };

@@ -1,19 +1,22 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthProvider';
-import Navbar from './Navbar';
+
 import { useToken } from '../../hooks/useToken';
+import axios from 'axios';
+import { toast } from 'react-toastify';
+import { DataContext } from '../../context/dataContext';
 
 const Auth = ({ children }) => {
-    const { token } = useToken();
+    const { admin, setAdmin, token, setToken } = useContext(DataContext);
     const navigate = useNavigate();
     console.log(token, 'auth module');
+    setToken(localStorage.getItem('token') || '');
 
     useEffect(() => {
         if (!token) {
             navigate('/login');
         }
-    }, []);
+    }, [token]);
 
     return <div>{children}</div>;
 };

@@ -59,25 +59,26 @@ const AllCategories = () => {
             ) : (
                 <div>
                     <p className="text-center text-3xl p-3">All Category page </p>
-                    {cat.map((ele) => {
-                        return (
-                            <div className="card card-side bg-base-100 shadow-xl my-5">
-                                <figure className="w-3/12">
-                                    <img src={ele.img} alt="Movie" />
-                                </figure>
-                                <div className="card-body">
-                                    <h2 className="card-title">{ele.name}</h2>
-                                    <p>{ele.description}</p>
-                                    <p>reviews : {ele.reviews}</p>
-                                    <div className="card-actions justify-end">
-                                        <button
-                                            className="btn btn-primary"
-                                            onClick={() => deleteCategory(ele._id)}
-                                        >
-                                            Delete Category
-                                        </button>
-                                    </div>
-                                    {/* {ele.admin !== 'admin0' ? (
+                    {cat &&
+                        cat.map((ele) => {
+                            return (
+                                <div className="card card-side bg-base-100 shadow-xl my-5">
+                                    <figure className="w-3/12">
+                                        <img src={ele.img} alt="Movie" />
+                                    </figure>
+                                    <div className="card-body">
+                                        <h2 className="card-title">{ele.name}</h2>
+                                        <p>{ele.description}</p>
+                                        <p>reviews : {ele.reviews}</p>
+                                        <div className="card-actions justify-end">
+                                            <button
+                                                className="btn btn-primary"
+                                                onClick={() => deleteCategory(ele._id)}
+                                            >
+                                                Delete Category
+                                            </button>
+                                        </div>
+                                        {/* {ele.admin !== 'admin0' ? (
                                         <div className="card-actions justify-end">
                                             <button className="btn btn-primary">
                                                 Delete Admin
@@ -86,10 +87,10 @@ const AllCategories = () => {
                                     ) : (
                                         ''
                                     )} */}
+                                    </div>
                                 </div>
-                            </div>
-                        );
-                    })}
+                            );
+                        })}
                 </div>
             )}
         </>
