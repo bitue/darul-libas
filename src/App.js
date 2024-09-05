@@ -111,6 +111,7 @@ import ProductsViewAdmin from './pages/dashboardPages/ProductsViewAdmin';
 import SuccessfulOrders from './pages/dashboardPages/SuccessfulOrders';
 import AllCategories from './pages/dashboardPages/AllCategories';
 import AddCategories from './pages/dashboardPages/AddCategories';
+import ChangePasswordAdmin from './pages/dashboardPages/ChangePasswordAdmin';
 
 const router = createBrowserRouter([
     {
@@ -147,11 +148,24 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '',
-                element: <h1>hi</h1>
+                element: (
+                    <>
+                        <div className="my-10">
+                            <h1 className="text-center text-5xl text-indigo-600 ">
+                                Welcome to Admin Panel of{' '}
+                            </h1>
+                            <p className="text-center text-4xl text-white font-bold">Darul Libas</p>
+                        </div>
+                    </>
+                )
             },
             {
                 path: 'addProducts',
                 element: <AddProducts />
+            },
+            {
+                path: 'changePasswordAdmin',
+                element: <ChangePasswordAdmin />
             },
             {
                 path: 'addCategories',

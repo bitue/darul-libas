@@ -9,12 +9,32 @@ const Products = () => {
     const [pro, setPro] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+
+    // const [catList, setCatList] = useState([]);
     // const [co, setCo] = useState(0);
+
+    // const filterCategory = (data)=> {
+    //     const categoryNameList =[] ;
+    //     for (const i of data){
+    //         categoryNameList.push(i.category.name)
+    //     }
+
+    //     setCatList(categoryNameList);
+
+    // }
 
     const fetchData = async () => {
         try {
             const { data } = await axios.get('http://localhost:5000/public/getAllProducts');
+            console.log(data.products);
             setPro(data.products);
+            // const newCatList = [];
+
+            // for (const i of data.products) {
+            //     newCatList.push(i.category.name);
+            // }
+            // setCatList(newCatList);
+            // console.log(catList)
             console.log(pro);
         } catch ({ message }) {
             setError(message);
@@ -36,6 +56,15 @@ const Products = () => {
                 <p>I am loading</p>
             ) : (
                 <div className="flex justify-around flex-wrap ">
+                    {/* {
+                        catList.forEach((ele)=> {
+                            for(const p of pro){
+                                if(p.category.name === ele){
+                                    return  <Product data={ele}></Product>;
+                                }
+                            }
+                        })
+                    } */}
                     {pro.map((ele) => {
                         return <Product data={ele}></Product>;
                     })}

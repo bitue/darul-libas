@@ -11,7 +11,10 @@ const ProductViewAdmin = () => {
         const fetchData = async () => {
             try {
                 const { data } = await axios.get('http://localhost:5000/public/getAllProducts');
-                setPro(data.products);
+                // setPro(data.products);
+                setPro((pre) => {
+                    return data.products;
+                });
                 console.log(pro);
             } catch ({ message }) {
                 setError(message);

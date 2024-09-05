@@ -1,15 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
+
     const navigate = useNavigate();
-    const onSubmit = (data) => {
-        // do api and check then goes it to dashboard page and do persistent login also
-        navigate('/dashboard');
+    const [res, setRes] = useState(null);
+    const [error, setError] = useState(null);
+    const onSubmit = async (data) => {
+        console.log(data);
+
+        // post api
+
+        const url = 'http://localhost:5000/auth/signIn';
+        const payload = data;
+
+        const config = {
+            headers: {
+                Authorization: 'Bearer YOUR_TOKEN_HERE',
+                'Content-Type': 'application/json'
+            }
+        };
+
+        try {
+            const response = await axios.post(url, payload, config);
+            console.log(response);
+            const { data, headers } = response;
+            setRes(data);
+            console.log(data);
+            toast(data.status);
+            if (data.status === 'Log in success') {
+                // change the local host
+                // only here token is add or update
+                localStorage.setItem('token', `bearer ${headers.authorization}`);
+
+                navigate('/dashboard');
+            } else {
+                toast(data.status);
+            }
+        } catch ({ message }) {
+            setError(message);
+            console.log(error);
+            toast(message);
+        } finally {
+        }
     };
     return (
         <div>
@@ -36,7 +75,7 @@ const Login = () => {
                                 name="username"
                                 class="w-full border bg-white border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
                                 autocomplete="off"
-                                {...register('adminName', { required: true })}
+                                {...register('admin', { required: true })}
                             />
                         </div>
 

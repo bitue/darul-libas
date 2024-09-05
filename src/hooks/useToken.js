@@ -20,19 +20,17 @@ export const useToken = () => {
     };
 
     const getData = async () => {
+        console.log('get data call ');
         try {
             if (!token) {
                 return;
             }
             setLoading(true); // got the token so loading is on to fetch user
-            const res = await axios.get(
-                'https://pear-gifted-lamb.cyclic.app/public/getUserByToken',
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`
-                    }
+            const res = await axios.get('http://localhost:5000/public/getAdminByToken', {
+                headers: {
+                    Authorization: `Bearer ${token}`
                 }
-            );
+            });
             const getAdmin = res.data;
             setAdmin(getAdmin);
             console.log(getAdmin);
