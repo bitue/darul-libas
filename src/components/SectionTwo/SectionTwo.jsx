@@ -35,15 +35,16 @@ const SectionTwo = () => {
                     <h1 className="text-4xl font-bold my-5 w-[85%] mx-auto">Product Categories</h1>
                     <div className="flex justify-center items-center">
                         <div className=" w-[85%] mx-auto place-items-center py-4 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 text-white">
-                            {cat.map((info) => (
-                                <FeatureCard
-                                    img={info.img}
-                                    name={info.name}
-                                    description={info.description}
-                                    dataAos="fade-right"
-                                    reviews={info.reviews}
-                                ></FeatureCard>
-                            ))}
+                            {cat &&
+                                cat.map((info) => (
+                                    <FeatureCard
+                                        img={info.img}
+                                        name={info.name}
+                                        description={info.description}
+                                        dataAos="fade-right"
+                                        reviews={info.reviews}
+                                    ></FeatureCard>
+                                ))}
                         </div>
                     </div>
                 </div>

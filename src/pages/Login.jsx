@@ -41,7 +41,7 @@ const Login = () => {
 
                 navigate('/dashboard');
             } else {
-                toast(data.status);
+                toast('Invalid Login credentials');
             }
         } catch ({ message }) {
             setError(message);

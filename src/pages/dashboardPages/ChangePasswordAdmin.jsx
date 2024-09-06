@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { DataContext } from '../../context/dataContext';
 
 const ChangePasswordAdmin = () => {
     const { register, handleSubmit } = useForm();
     const [res, setRes] = useState(null);
     const [error, setError] = useState(null);
+    const { token } = useContext(DataContext);
     const onSubmit = async (data) => {
         console.log(data);
         // post api
@@ -17,7 +19,7 @@ const ChangePasswordAdmin = () => {
 
         const config = {
             headers: {
-                Authorization: 'Bearer YOUR_TOKEN_HERE',
+                Authorization: token,
                 'Content-Type': 'application/json'
             }
         };

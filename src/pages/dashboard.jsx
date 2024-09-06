@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 import { Link, Outlet } from 'react-router-dom';
 
-const dashboard = () => {
+const Dashboard = () => {
     return (
         <div>
             <Navbar></Navbar>
@@ -85,10 +85,10 @@ const dashboard = () => {
                             </li>
                             <li>
                                 <Link
-                                    to="/dashboard/"
+                                    to="/"
                                     className="my-2 flex items-center text-[17px] py-1.5 px-4 text-white hover:text-blue-black hover:bg-indigo-950"
                                 >
-                                    Sign out
+                                    <button>sign out</button>
                                 </Link>
                             </li>
                         </ul>
@@ -103,4 +103,4 @@ const dashboard = () => {
     );
 };
 
-export default dashboard;
+export default Dashboard;

@@ -6,7 +6,9 @@ const DataContext = createContext();
 const DataContextProvider = ({ children }) => {
     const [productList, setProductList] = useState([]);
 
-    const { token, saveToken, clearToken, admin, setAdmin, setToken, loading } = useToken();
+    const { token, saveToken, clearToken, admin, setAdmin, setToken, loading, signOut } =
+        useToken();
+
     const Data = {
         productList,
         setProductList,
@@ -16,7 +18,8 @@ const DataContextProvider = ({ children }) => {
         saveToken,
         clearToken,
         setToken,
-        loading
+        loading,
+        signOut
     };
 
     return <DataContext.Provider value={Data}>{children}</DataContext.Provider>;

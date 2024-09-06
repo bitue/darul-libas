@@ -5,7 +5,7 @@ import { DataContext } from '../../context/dataContext';
 // const panjabiData = { name: 'panjabi' };
 
 const Navbar = () => {
-    const { productList, setProductList } = useContext(DataContext);
+    const { productList, setProductList, admin } = useContext(DataContext);
     const sum = productList.reduce((accumulator, currentValue) => {
         return accumulator + Number(currentValue.productPrice * currentValue.qty);
     }, 0);
@@ -90,6 +90,9 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
+                    <div>
+                        <p> {admin && admin.admin}</p>
+                    </div>
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                             <div className="indicator">

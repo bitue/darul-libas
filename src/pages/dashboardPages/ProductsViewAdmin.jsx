@@ -1,16 +1,22 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { DataContext } from '../../context/dataContext';
 
 const ProductViewAdmin = () => {
     const [pro, setPro] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [co, setCo] = useState(0);
+    const { token } = useContext(DataContext);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data } = await axios.get('http://localhost:5000/public/getAllProducts');
+                const { data } = await axios.get('http://localhost:5000/public/getAllProducts', {
+                    headers: {
+                        Authorization: token
+                    }
+                });
                 // setPro(data.products);
                 setPro((pre) => {
                     return data.products;
@@ -34,7 +40,10 @@ const ProductViewAdmin = () => {
                 const { data } = await axios({
                     method: 'delete',
                     url: 'http://localhost:5000/admin/deleteProduct',
-                    data: { id }
+                    data: { id },
+                    headers: {
+                        Authorization: token // Replace with your actual token
+                    }
                 });
                 console.log(data);
                 setCo(co + 1);
@@ -56,35 +65,36 @@ const ProductViewAdmin = () => {
             ) : (
                 <div>
                     <h3 className="text-white text-center text-2xl">Product View Page Admin</h3>
-                    {pro.map((ele) => {
-                        return (
-                            <>
-                                <div className="card card-side bg-base-100 shadow-xl my-5">
-                                    <figure className="w-3/12">
-                                        <img src={ele.productImgList[0]} alt="Movie" />
-                                    </figure>
-                                    <div className="card-body">
-                                        <h2 className="card-title">{ele.productName}</h2>
-                                        <p>{ele.description}</p>
-                                        <p> Price : {ele.productPrice}</p>
-                                        <p>Brand : {ele.productBrand}</p>
-                                        <div className="card-actions justify-end">
-                                            <button className="btn btn-primary bg-indigo-600">
-                                                Edit Product
-                                            </button>
+                    {pro &&
+                        pro.map((ele) => {
+                            return (
+                                <>
+                                    <div className="card card-side bg-base-100 shadow-xl my-5">
+                                        <figure className="w-3/12">
+                                            <img src={ele.productImgList[0]} alt="Movie" />
+                                        </figure>
+                                        <div className="card-body">
+                                            <h2 className="card-title">{ele.productName}</h2>
+                                            <p>{ele.description}</p>
+                                            <p> Price : {ele.productPrice}</p>
+                                            <p>Brand : {ele.productBrand}</p>
+                                            <div className="card-actions justify-end">
+                                                <button className="btn btn-primary bg-indigo-600">
+                                                    Edit Product
+                                                </button>
 
-                                            <button
-                                                className="btn bg-black text-white "
-                                                onClick={() => deleteProduct(ele._id)}
-                                            >
-                                                deleteProduct
-                                            </button>
+                                                <button
+                                                    className="btn bg-black text-white "
+                                                    onClick={() => deleteProduct(ele._id)}
+                                                >
+                                                    deleteProduct
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </>
-                        );
-                    })}
+                                </>
+                            );
+                        })}
                 </div>
             )}
         </>

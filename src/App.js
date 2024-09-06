@@ -100,7 +100,7 @@ import Products from './pages/Products';
 import Checkout from './pages/Checkout';
 import { DataContextProvider } from './context/dataContext';
 import ProductDetails from './pages/ProductDetails';
-import Dashboard from './pages/dashboard';
+import Dashboard from './pages/Dashboard';
 import { ToastContainer } from 'react-toastify';
 import Login from './pages/Login';
 import AddProducts from './pages/dashboardPages/AddProducts';

@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { DataContext } from '../../context/dataContext';
 
 const AddProducts = () => {
     // when component mount
@@ -12,6 +13,7 @@ const AddProducts = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [res, setRes] = useState(null);
+    const { token } = useContext(DataContext);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -74,7 +76,7 @@ const AddProducts = () => {
 
         const config = {
             headers: {
-                Authorization: 'Bearer YOUR_TOKEN_HERE',
+                Authorization: token,
                 'Content-Type': 'application/json'
             }
         };
@@ -82,6 +84,7 @@ const AddProducts = () => {
         try {
             const response = await axios.post(url, payload, config);
             setRes(response.data);
+            console.log(response.data);
             toast('Product Added Successfully');
         } catch (error) {
             setError(error);

@@ -1,13 +1,15 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { DataContext } from '../../context/dataContext';
 
 const AllCategories = () => {
     const [cat, setCat] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [co, setCo] = useState(0);
+    const { token } = useContext(DataContext);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -37,7 +39,10 @@ const AllCategories = () => {
                 const { data } = await axios({
                     method: 'delete',
                     url: 'http://localhost:5000/admin/deleteCategory',
-                    data: { id }
+                    data: { id },
+                    headers: {
+                        Authorization: token
+                    }
                 });
                 console.log(data);
                 setCo(co + 1);

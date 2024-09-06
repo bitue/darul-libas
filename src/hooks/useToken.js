@@ -18,6 +18,10 @@ export const useToken = () => {
 
         //setUser(null);
     };
+    const signOut = () => {
+        clearToken();
+        setAdmin(null);
+    };
 
     const getData = async () => {
         console.log('get data call ');
@@ -50,5 +54,5 @@ export const useToken = () => {
 
     // console.log(token);
 
-    return { token, saveToken, clearToken, admin, setAdmin, setToken, loading };
+    return { token, saveToken, clearToken, admin, setAdmin, setToken, loading, signOut };
 };
