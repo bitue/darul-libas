@@ -4,14 +4,11 @@ const SectionOne = () => {
     return (
         <div>
             <div className="hero bg-base-200 min-h-screen">
-                <div className="hero-content flex-col lg:flex-row-reverse">
-                    <div>
-                        <div className="carousel carousel-center bg-neutral rounded-box max-w-md space-x-4 p-4">
-                            <div className="carousel-item">
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1559703248-dcaaec9fab78.webp"
-                                    className="rounded-box"
-                                />
+                <div className="hero-content flex-col lg:flex-row-reverse w-full ">
+                    <div className="lg:w-3/5 w-full">
+                        <div className="carousel carousel-center bg-neutral rounded-box w-full space-x-4 p-4">
+                            <div className="carousel-item h-[400px] w-[300px] ">
+                                <img src="best1.jpg" className="rounded-box" />
                             </div>
                             <div className="carousel-item">
                                 <img
@@ -51,7 +48,7 @@ const SectionOne = () => {
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div className="lg:w-2/5 w-full">
                         <h1 className="text-5xl font-bold">Special Offer Products!</h1>
                         <p className="py-6">
                             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Children } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Product = (props) => {
@@ -62,12 +62,6 @@ const Product = (props) => {
                                 </svg>
                                 Product Details
                             </div>
-                            {/* <div
-                                className="badge badge-outline bg-yellow-600 text-black p-4"
-                                onClick={addToBuy}
-                            >
-                                Buy Now
-                            </div> */}
                         </div>
                     </div>
                 </div>

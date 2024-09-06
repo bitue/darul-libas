@@ -14,7 +14,7 @@ const AllCategories = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data } = await axios.get('http://localhost:5000/admin/getCategories');
+                const { data } = await axios.get('http://localhost:5000/public/getAllCategories');
                 setCat(data.categories);
                 console.log(cat);
             } catch ({ message }) {

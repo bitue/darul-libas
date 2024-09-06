@@ -1,9 +1,10 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../../context/dataContext';
+import Product from '../../components/Product/Product';
 
 const ProductViewAdmin = () => {
-    const [pro, setPro] = useState(null);
+    const [products, setProducts] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [co, setCo] = useState(0);
@@ -18,10 +19,8 @@ const ProductViewAdmin = () => {
                     }
                 });
                 // setPro(data.products);
-                setPro((pre) => {
-                    return data.products;
-                });
-                console.log(pro);
+                setProducts(data.products);
+                console.log(products);
             } catch ({ message }) {
                 setError(message);
                 console.log(error);
@@ -64,38 +63,59 @@ const ProductViewAdmin = () => {
                 <p>I am loading ....</p>
             ) : (
                 <div>
-                    <h3 className="text-white text-center text-2xl">Product View Page Admin</h3>
-                    {pro &&
-                        pro.map((ele) => {
+                    {/* {products &&
+                        products.map((cat) => {
                             return (
-                                <>
-                                    <div className="card card-side bg-base-100 shadow-xl my-5">
-                                        <figure className="w-3/12">
-                                            <img src={ele.productImgList[0]} alt="Movie" />
-                                        </figure>
-                                        <div className="card-body">
-                                            <h2 className="card-title">{ele.productName}</h2>
-                                            <p>{ele.description}</p>
-                                            <p> Price : {ele.productPrice}</p>
-                                            <p>Brand : {ele.productBrand}</p>
-                                            <div className="card-actions justify-end">
-                                                <button className="btn btn-primary bg-indigo-600">
-                                                    Edit Product
-                                                </button>
-
-                                                <button
-                                                    className="btn bg-black text-white "
-                                                    onClick={() => deleteProduct(ele._id)}
-                                                >
-                                                    deleteProduct
-                                                </button>
-                                            </div>
-                                        </div>
+                                <div>
+                                    <p className="ms-16 text-2xl font-bold my-1 text-indigo-600">
+                                        {cat.name} Collections
+                                    </p>
+                                    <div className="flex justify-around flex-wrap ">
+                                        {cat.products.map((e) => {
+                                            return <Product data={e}></Product>;
+                                        })}
                                     </div>
-                                </>
+                                </div>
                             );
-                        })}
+                        })} */}
                 </div>
+
+                // <div>
+                //     <h3 className="text-white text-center text-2xl">Product View Page Admin</h3>
+                //     {pro &&
+                //         pro.map((e) => {
+                //             <p>{e.name}</p>;
+                //             e.products.map((ele) => {
+                //                 return (
+                //                     <>
+                //                         <div className="card card-side bg-base-100 shadow-xl my-5">
+                //                             <figure className="w-3/12">
+                //                                 <img src={ele.productImgList[0]} alt="Movie" />
+                //                             </figure>
+                //                             <div className="card-body">
+                //                                 <h2 className="card-title">{ele.productName}</h2>
+                //                                 <p>{ele.description}</p>
+                //                                 <p> Price : {ele.productPrice}</p>
+                //                                 <p>Brand : {ele.productBrand}</p>
+                //                                 <div className="card-actions justify-end">
+                //                                     <button className="btn btn-primary bg-indigo-600">
+                //                                         Edit Product
+                //                                     </button>
+
+                //                                     <button
+                //                                         className="btn bg-black text-white "
+                //                                         onClick={() => deleteProduct(ele._id)}
+                //                                     >
+                //                                         deleteProduct
+                //                                     </button>
+                //                                 </div>
+                //                             </div>
+                //                         </div>
+                //                     </>
+                //                 );
+                //             });
+                //         })}
+                // </div>
             )}
         </>
     );
