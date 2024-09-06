@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 import { Link, Outlet } from 'react-router-dom';
+import { DataContext } from '../context/dataContext';
 
 const Dashboard = () => {
+    const { signOut } = useContext(DataContext);
     return (
         <div>
             <Navbar></Navbar>
@@ -88,7 +90,7 @@ const Dashboard = () => {
                                     to="/"
                                     className="my-2 flex items-center text-[17px] py-1.5 px-4 text-white hover:text-blue-black hover:bg-indigo-950"
                                 >
-                                    <button>sign out</button>
+                                    <button onClick={signOut}>sign out</button>
                                 </Link>
                             </li>
                         </ul>

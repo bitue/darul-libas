@@ -6,36 +6,17 @@ import Product from '../components/Product/Product';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 const Products = () => {
-    const [pro, setPro] = useState(null);
+    const [products, setProducts] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
-    // const [catList, setCatList] = useState([]);
-    // const [co, setCo] = useState(0);
-
-    // const filterCategory = (data)=> {
-    //     const categoryNameList =[] ;
-    //     for (const i of data){
-    //         categoryNameList.push(i.category.name)
-    //     }
-
-    //     setCatList(categoryNameList);
-
-    // }
 
     const fetchData = async () => {
         try {
             const { data } = await axios.get('http://localhost:5000/public/getAllProducts');
             console.log(data.products);
-            setPro(data.products);
-            // const newCatList = [];
+            setProducts(data.products);
 
-            // for (const i of data.products) {
-            //     newCatList.push(i.category.name);
-            // }
-            // setCatList(newCatList);
-            // console.log(catList)
-            console.log(pro);
+            console.log(products);
         } catch ({ message }) {
             setError(message);
             console.log(error);
@@ -55,19 +36,22 @@ const Products = () => {
             {loading ? (
                 <p>I am loading</p>
             ) : (
-                <div className="flex justify-around flex-wrap ">
-                    {/* {
-                        catList.forEach((ele)=> {
-                            for(const p of pro){
-                                if(p.category.name === ele){
-                                    return  <Product data={ele}></Product>;
-                                }
-                            }
-                        })
-                    } */}
-                    {pro.map((ele) => {
-                        return <Product data={ele}></Product>;
-                    })}
+                <div>
+                    {products &&
+                        products.map((cat) => {
+                            return (
+                                <div>
+                                    <p className="ms-16 text-2xl font-bold my-1 text-indigo-600">
+                                        {cat.name} Collections
+                                    </p>
+                                    <div className="flex justify-around flex-wrap ">
+                                        {cat.products.map((e) => {
+                                            return <Product data={e}></Product>;
+                                        })}
+                                    </div>
+                                </div>
+                            );
+                        })}
                 </div>
             )}
 
