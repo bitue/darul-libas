@@ -10,41 +10,17 @@ const SectionOne = () => {
                             <div className="carousel-item h-[400px] w-[300px] ">
                                 <img src="best1.jpg" className="rounded-box" />
                             </div>
-                            <div className="carousel-item">
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1565098772267-60af42b81ef2.webp"
-                                    className="rounded-box"
-                                />
+                            <div className="carousel-item h-[400px] w-[300px] ">
+                                <img src="best2.jpg" className="rounded-box" />
                             </div>
-                            <div className="carousel-item">
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1572635148818-ef6fd45eb394.webp"
-                                    className="rounded-box"
-                                />
+                            <div className="carousel-item h-[400px] w-[300px] ">
+                                <img src="best3.jpg" className="rounded-box" />
                             </div>
-                            <div className="carousel-item">
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1494253109108-2e30c049369b.webp"
-                                    className="rounded-box"
-                                />
+                            <div className="carousel-item h-[400px] w-[300px] ">
+                                <img src="best4.jpg" className="rounded-box" />
                             </div>
-                            <div className="carousel-item">
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1550258987-190a2d41a8ba.webp"
-                                    className="rounded-box"
-                                />
-                            </div>
-                            <div className="carousel-item">
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1559181567-c3190ca9959b.webp"
-                                    className="rounded-box"
-                                />
-                            </div>
-                            <div className="carousel-item">
-                                <img
-                                    src="https://img.daisyui.com/images/stock/photo-1601004890684-d8cbf643f5f2.webp"
-                                    className="rounded-box"
-                                />
+                            <div className="carousel-item h-[400px] w-[300px] ">
+                                <img src="best5.jpg" className="rounded-box" />
                             </div>
                         </div>
                     </div>
@@ -55,9 +31,16 @@ const SectionOne = () => {
                             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a
                             id nisi.
                         </p>
-                        <button className="btn btn-primary">
-                            <Link to="/product">Products</Link>
-                        </button>
+                        {/* <button className="btn btn-primary">
+                            <a href="">
+                                <Link to="/product">Products</Link>
+                            </a>
+                        </button> */}
+                        <Link to="/product" className="">
+                            <button className="btn text-white bg-indigo-600">
+                                Explore Products
+                            </button>
+                        </Link>
                     </div>
                 </div>
             </div>
