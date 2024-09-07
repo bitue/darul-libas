@@ -113,6 +113,8 @@ import AllCategories from './pages/dashboardPages/AllCategories';
 import AddCategories from './pages/dashboardPages/AddCategories';
 import ChangePasswordAdmin from './pages/dashboardPages/ChangePasswordAdmin';
 import Auth from './components/Auth/Auth';
+import EditProduct from './pages/dashboardPages/EditProduct';
+import AllQuery from './pages/dashboardPages/AllQuery';
 
 const router = createBrowserRouter([
     {
@@ -197,8 +199,16 @@ const router = createBrowserRouter([
                 element: <ProductsViewAdmin />
             },
             {
+                path: 'editProduct',
+                element: <EditProduct />
+            },
+            {
                 path: 'successfulOrders',
                 element: <SuccessfulOrders />
+            },
+            {
+                path: 'allQueries',
+                element: <AllQuery />
             }
         ]
     }

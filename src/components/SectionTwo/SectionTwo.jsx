@@ -2,6 +2,7 @@ import FeatureCard from '../FeaturesCard/FeatureCard';
 import React, { useEffect, useState } from 'react';
 
 import axios from 'axios';
+import { Puff } from 'react-loader-spinner';
 
 const SectionTwo = () => {
     const [cat, setCat] = useState(null);
@@ -29,7 +30,17 @@ const SectionTwo = () => {
     return (
         <>
             {loading ? (
-                <p>I am loading</p>
+                <div className="flex justify-center items-center h-full w-full ">
+                    <Puff
+                        visible={true}
+                        height="100"
+                        width="100"
+                        color="#335bff"
+                        ariaLabel="puff-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                    />
+                </div>
             ) : (
                 <div>
                     <h1 className="text-4xl font-bold my-5 w-[85%] mx-auto">Product Categories</h1>

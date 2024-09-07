@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../../context/dataContext';
-import Product from '../../components/Product/Product';
+import { Puff } from 'react-loader-spinner';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ProductViewAdmin = () => {
     const [pro, setPro] = useState(null);
@@ -9,6 +10,11 @@ const ProductViewAdmin = () => {
     const [error, setError] = useState(null);
     const [co, setCo] = useState(0);
     const { token } = useContext(DataContext);
+
+    const navigate = useNavigate();
+    const handleProductDetails = (editProductDetails) => {
+        navigate('/dashboard/editProduct', { state: editProductDetails });
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -61,7 +67,17 @@ const ProductViewAdmin = () => {
     return (
         <>
             {loading ? (
-                <p>I am loading ....</p>
+                <div className="flex justify-center items-center h-full w-full ">
+                    <Puff
+                        visible={true}
+                        height="100"
+                        width="100"
+                        color="#335bff"
+                        ariaLabel="puff-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                    />
+                </div>
             ) : (
                 <div>
                     <h3 className="text-white text-center text-2xl">Product View Page Admin</h3>
@@ -89,9 +105,12 @@ const ProductViewAdmin = () => {
                                                 <p>Price: {ele.productPrice}</p>
                                                 <p>Brand: {ele.productBrand}</p>
                                                 <div className="card-actions justify-end">
-                                                    <button className="btn btn-primary bg-indigo-600">
+                                                    {/* <button
+                                                        className="btn btn-primary bg-indigo-600"
+                                                        onClick={() => handleProductDetails(ele)}
+                                                    >
                                                         Edit Product
-                                                    </button>
+                                                    </button> */}
                                                     <button
                                                         className="btn bg-black text-white"
                                                         onClick={() => deleteProduct(ele._id)}

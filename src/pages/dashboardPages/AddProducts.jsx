@@ -5,6 +5,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { DataContext } from '../../context/dataContext';
+import { Puff } from 'react-loader-spinner';
 
 const AddProducts = () => {
     // when component mount
@@ -96,8 +97,16 @@ const AddProducts = () => {
     return (
         <>
             {loading ? (
-                <div>
-                    <p>I am loading</p>
+                <div className="flex justify-center items-center h-full w-full ">
+                    <Puff
+                        visible={true}
+                        height="100"
+                        width="100"
+                        color="#335bff"
+                        ariaLabel="puff-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                    />
                 </div>
             ) : (
                 <div className="text-white  mx-auto">

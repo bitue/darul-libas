@@ -6,7 +6,7 @@ const FeatureCard = (data) => {
         <div className="card bg-base-100 w-96 shadow-xl">
             <div className="card bg-base-100 w-96 shadow-xl">
                 <figure>
-                    <img src={data.img} alt="Shoes" />
+                    <img src={data.img} alt="product" />
                 </figure>
                 <div className="card-body">
                     <h2 className="card-title">

@@ -87,6 +87,14 @@ const Dashboard = () => {
                             </li>
                             <li>
                                 <Link
+                                    to="/dashboard/allQueries"
+                                    className="my-2 flex items-center text-[17px] py-1.5 px-4 text-white hover:text-blue-black hover:bg-indigo-950"
+                                >
+                                    All Queries
+                                </Link>
+                            </li>
+                            <li>
+                                <Link
                                     to="/"
                                     className="my-2 flex items-center text-[17px] py-1.5 px-4 text-white hover:text-blue-black hover:bg-indigo-950"
                                 >

@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 
 import { DataContext } from '../../context/dataContext';
+import { Puff } from 'react-loader-spinner';
 
 const SuccessfulOrders = () => {
     const [order, setOrder] = useState(null);
@@ -40,7 +41,17 @@ const SuccessfulOrders = () => {
     return (
         <>
             {loading ? (
-                <p>I am loading ....</p>
+                <div className="flex justify-center items-center h-full w-full ">
+                    <Puff
+                        visible={true}
+                        height="100"
+                        width="100"
+                        color="#335bff"
+                        ariaLabel="puff-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                    />
+                </div>
             ) : (
                 <div>
                     <h2 className="text-3xl text-center my-5 ">Order Information Admin Panel</h2>

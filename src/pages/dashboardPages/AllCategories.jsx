@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { DataContext } from '../../context/dataContext';
+import { Puff } from 'react-loader-spinner';
 
 const AllCategories = () => {
     const [cat, setCat] = useState(null);
@@ -60,7 +61,17 @@ const AllCategories = () => {
     return (
         <>
             {loading ? (
-                <p>I am loading ....</p>
+                <div className="flex justify-center items-center h-full w-full ">
+                    <Puff
+                        visible={true}
+                        height="100"
+                        width="100"
+                        color="#335bff"
+                        ariaLabel="puff-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                    />
+                </div>
             ) : (
                 <div>
                     <p className="text-center text-3xl p-3">All Category page </p>

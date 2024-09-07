@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../../context/dataContext';
+import { Puff } from 'react-loader-spinner';
 
 const AdminProfile = () => {
     const [admin, setAdmin] = useState(null);
@@ -32,7 +33,17 @@ const AdminProfile = () => {
     return (
         <>
             {loading ? (
-                <p>I am loading ....</p>
+                <div className="flex justify-center items-center h-full w-full ">
+                    <Puff
+                        visible={true}
+                        height="100"
+                        width="100"
+                        color="#335bff"
+                        ariaLabel="puff-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                    />
+                </div>
             ) : (
                 <div>
                     {admin &&

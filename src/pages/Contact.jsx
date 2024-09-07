@@ -1,10 +1,40 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 const Contact = () => {
     const { register, handleSubmit } = useForm();
-    const onSubmit = (data) => console.log(data);
+    const [res, setRes] = useState(null);
+    const [err, setErr] = useState(null);
+
+    const onSubmit = async (data) => {
+        console.log(data);
+        // post api
+
+        const url = 'http://localhost:5000/query/addQuery';
+        const payload = data;
+
+        const config = {
+            headers: {
+                Authorization: 'Bearer token',
+                'Content-Type': 'application/json'
+            }
+        };
+
+        try {
+            const response = await axios.post(url, payload, config);
+            setRes(response.data);
+            //console.log(res);
+            toast('Thank you for your response , Our team will contact with you very soon');
+        } catch ({ message }) {
+            setErr(message);
+            //console.log(err);
+            toast(message);
+        } finally {
+        }
+    };
     return (
         <div>
             <Navbar />

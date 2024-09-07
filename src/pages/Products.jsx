@@ -5,6 +5,7 @@ import Footer from '../components/Footer/Footer';
 import Product from '../components/Product/Product';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { Puff } from 'react-loader-spinner';
 const Products = () => {
     const [pro, setPro] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -37,7 +38,17 @@ const Products = () => {
         <div>
             <Navbar />
             {loading ? (
-                <p>I am loading</p>
+                <div className="flex justify-center items-center h-full w-full ">
+                    <Puff
+                        visible={true}
+                        height="100"
+                        width="100"
+                        color="#335bff"
+                        ariaLabel="puff-loading"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                    />
+                </div>
             ) : (
                 <div>
                     {pro?.length &&
