@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { DataContext } from '../../context/dataContext';
 import { Puff } from 'react-loader-spinner';
 import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const ProductViewAdmin = () => {
     const [pro, setPro] = useState(null);
@@ -49,7 +50,8 @@ const ProductViewAdmin = () => {
                         Authorization: token // Replace with your actual token
                     }
                 });
-                console.log(data);
+                console.log(data.message);
+                toast(data.message);
                 setCo(co + 1);
             } else {
                 return;

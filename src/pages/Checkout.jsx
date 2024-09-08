@@ -234,7 +234,7 @@ const Checkout = () => {
                                         </option>
                                     </select>
 
-                                    <label class="flex items-center mb-1.5 text-gray-400 text-sm font-medium">
+                                    {/* <label class="flex items-center mb-1.5 text-gray-400 text-sm font-medium">
                                         Promo Code
                                     </label>
                                     <div class="flex pb-4 w-full">
@@ -258,7 +258,7 @@ const Checkout = () => {
                                         <button class="rounded-lg w-full bg-black py-2.5 px-4 text-white text-sm font-semibold text-center mb-8 transition-all duration-500 hover:bg-black/80">
                                             Apply
                                         </button>
-                                    </div>
+                                    </div> */}
                                     <div class="flex items-center justify-between py-3">
                                         <p class="font-medium text-xl leading-8 text-black">
                                             {productList.length} Items
