@@ -81,6 +81,11 @@ const Checkout = () => {
             //give it to order arrived page
             console.log(res);
             toast('Thank you For your order , we will contact with you soon');
+            // need to update the product list arr
+
+            setProductList([]);
+
+            // do navigate to order success page from here without setProduct([])
         } catch ({ message }) {
             setErr(message);
             console.log(message);
