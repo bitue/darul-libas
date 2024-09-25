@@ -12,11 +12,14 @@ const AdminProfile = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data } = await axios.get('http://localhost:5000/admin/getAllAdmin', {
-                    headers: {
-                        Authorization: token
+                const { data } = await axios.get(
+                    'https://darullibas-backend.onrender.com/admin/getAllAdmin',
+                    {
+                        headers: {
+                            Authorization: token
+                        }
                     }
-                });
+                );
                 setAdmin(data.admin);
                 console.log(data.admin);
             } catch (error) {

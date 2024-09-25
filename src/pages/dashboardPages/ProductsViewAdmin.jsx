@@ -20,11 +20,14 @@ const ProductViewAdmin = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data } = await axios.get('http://localhost:5000/public/getAllProducts', {
-                    headers: {
-                        Authorization: token
+                const { data } = await axios.get(
+                    'https://darullibas-backend.onrender.com/public/getAllProducts',
+                    {
+                        headers: {
+                            Authorization: token
+                        }
                     }
-                });
+                );
                 // setPro(data.products);
                 setPro(data.products);
             } catch ({ message }) {
@@ -44,7 +47,7 @@ const ProductViewAdmin = () => {
                 setLoading(true);
                 const { data } = await axios({
                     method: 'delete',
-                    url: 'http://localhost:5000/admin/deleteProduct',
+                    url: 'https://darullibas-backend.onrender.com/admin/deleteProduct',
                     data: { id },
                     headers: {
                         Authorization: token // Replace with your actual token

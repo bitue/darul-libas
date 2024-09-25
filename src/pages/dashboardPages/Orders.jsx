@@ -21,11 +21,14 @@ const Order = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data } = await axios.get('http://localhost:5000/order/getAllOrders', {
-                    headers: {
-                        Authorization: token
+                const { data } = await axios.get(
+                    'https://darullibas-backend.onrender.com/order/getAllOrders',
+                    {
+                        headers: {
+                            Authorization: token
+                        }
                     }
-                });
+                );
                 setOrder(data.getAllOrders);
                 console.log(data.getAllOrders);
             } catch ({ message }) {
@@ -54,7 +57,7 @@ const Order = () => {
             return;
         }
 
-        const url = 'http://localhost:5000/order/changeOrderStatus';
+        const url = 'https://darullibas-backend.onrender.com/order/changeOrderStatus';
         const payload = { id, status, proceed };
 
         const config = {
@@ -82,7 +85,7 @@ const Order = () => {
     // delete order by admin
     const deleteOrder = async (id) => {
         if (window.confirm('Are you sure? want to delete this order ')) {
-            const url = 'http://localhost:5000/order/deleteOrderById';
+            const url = 'https://darullibas-backend.onrender.com/order/deleteOrderById';
             const payload = { id };
             console.log(id);
 

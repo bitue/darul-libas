@@ -14,7 +14,9 @@ const Products = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data } = await axios.get('http://localhost:5000/public/getAllProducts');
+                const { data } = await axios.get(
+                    'https://darullibas-backend.onrender.com/public/getAllProducts'
+                );
 
                 console.log('Products fetched:', data);
                 setPro(data.products); // Directly setting products
@@ -90,7 +92,7 @@ export default Products;
 
 //     const fetchData = async () => {
 //         try {
-//             const { data } = await axios.get('http://localhost:5000/public/getAllProducts');
+//             const { data } = await axios.get('https://darullibas-backend.onrender.com/public/getAllProducts');
 //             console.log(data.products, 'data from backend');
 //             setProducts((pre) => {
 //                 return data.products;

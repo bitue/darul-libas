@@ -13,7 +13,7 @@ const Contact = () => {
         console.log(data);
         // post api
 
-        const url = 'http://localhost:5000/query/addQuery';
+        const url = 'https://darullibas-backend.onrender.com/query/addQuery';
         const payload = data;
 
         const config = {

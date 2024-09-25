@@ -14,7 +14,7 @@ const AddCategories = () => {
         console.log(data);
         // post api
 
-        const url = 'http://localhost:5000/admin/addCategory';
+        const url = 'https://darullibas-backend.onrender.com/admin/addCategory';
         const payload = data;
 
         const config = {

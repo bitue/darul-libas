@@ -16,7 +16,7 @@ const SuccessfulOrders = () => {
         const fetchData = async () => {
             try {
                 const { data } = await axios.get(
-                    'http://localhost:5000/order/getAllSuccessfulOrder',
+                    'https://darullibas-backend.onrender.com/order/getAllSuccessfulOrder',
                     {
                         headers: {
                             Authorization: token

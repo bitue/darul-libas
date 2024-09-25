@@ -15,7 +15,9 @@ const AllCategories = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data } = await axios.get('http://localhost:5000/public/getAllCategories');
+                const { data } = await axios.get(
+                    'https://darullibas-backend.onrender.com/public/getAllCategories'
+                );
                 setCat(data.categories);
                 console.log(cat);
             } catch ({ message }) {
@@ -39,7 +41,7 @@ const AllCategories = () => {
                 setLoading(true);
                 const { data } = await axios({
                     method: 'delete',
-                    url: 'http://localhost:5000/admin/deleteCategory',
+                    url: 'https://darullibas-backend.onrender.com/admin/deleteCategory',
                     data: { id },
                     headers: {
                         Authorization: token

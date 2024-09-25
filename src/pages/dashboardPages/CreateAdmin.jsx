@@ -16,7 +16,7 @@ const CreateAdmin = () => {
         console.log(data);
         // post api
 
-        const url = 'http://localhost:5000/admin/createAdmin';
+        const url = 'https://darullibas-backend.onrender.com/admin/createAdmin';
         const payload = data;
 
         const config = {

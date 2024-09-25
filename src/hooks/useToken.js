@@ -30,11 +30,14 @@ export const useToken = () => {
                 return;
             }
             setLoading(true); // got the token so loading is on to fetch user
-            const res = await axios.get('http://localhost:5000/auth/getAdminByToken', {
-                headers: {
-                    Authorization: token
+            const res = await axios.get(
+                'https://darullibas-backend.onrender.com/auth/getAdminByToken',
+                {
+                    headers: {
+                        Authorization: token
+                    }
                 }
-            });
+            );
             const getAdmin = res.data.admin;
             setAdmin(getAdmin);
             console.log(getAdmin);

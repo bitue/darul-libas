@@ -19,7 +19,9 @@ const AddProducts = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data } = await axios.get('http://localhost:5000/public/getAllCategories');
+                const { data } = await axios.get(
+                    'https://darullibas-backend.onrender.com/public/getAllCategories'
+                );
                 setCategories(data.categories);
                 console.log(data.categories);
             } catch (error) {
@@ -72,7 +74,7 @@ const AddProducts = () => {
         };
         console.log(processData);
 
-        const url = 'http://localhost:5000/admin/addProduct';
+        const url = 'https://darullibas-backend.onrender.com/admin/addProduct';
         const payload = processData;
 
         const config = {

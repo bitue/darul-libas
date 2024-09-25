@@ -11,7 +11,9 @@ const SectionTwo = () => {
 
     const fetchData = async () => {
         try {
-            const { data } = await axios.get('http://localhost:5000/public/getAllCategories');
+            const { data } = await axios.get(
+                'https://darullibas-backend.onrender.com/public/getAllCategories'
+            );
             setCat(data.categories);
             console.log(cat, 'first ', loading);
         } catch ({ message }) {

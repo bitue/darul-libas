@@ -13,11 +13,14 @@ const AllQuery = () => {
 
     const getData = async () => {
         try {
-            const { data } = await axios.get('http://localhost:5000/query/getAllQueries', {
-                headers: {
-                    Authorization: token
+            const { data } = await axios.get(
+                'https://darullibas-backend.onrender.com/query/getAllQueries',
+                {
+                    headers: {
+                        Authorization: token
+                    }
                 }
-            });
+            );
             console.log(data);
             setQuery(data.getQuery);
         } catch ({ message }) {
@@ -34,7 +37,7 @@ const AllQuery = () => {
                 setLoading(true);
                 const { data } = await axios({
                     method: 'delete',
-                    url: 'http://localhost:5000/query/closeQuery',
+                    url: 'https://darullibas-backend.onrender.com/query/closeQuery',
                     data: { id },
                     headers: {
                         Authorization: token
