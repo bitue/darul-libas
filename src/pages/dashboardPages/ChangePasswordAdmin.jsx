@@ -14,7 +14,7 @@ const ChangePasswordAdmin = () => {
         console.log(data);
         // post api
 
-        const url = 'http://localhost:5000/admin/changePasswordAdmin';
+        const url = 'https://darullibas-backend.onrender.com/admin/changePasswordAdmin';
         const payload = data;
 
         const config = {

@@ -54,7 +54,7 @@ const Checkout = () => {
         }
         console.log(data);
 
-        const url = 'http://localhost:5000/order/makeOrder';
+        const url = 'https://darullibas-backend.onrender.com/order/makeOrder';
 
         const payload = {
             name,
