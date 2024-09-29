@@ -10,7 +10,8 @@ const AllCategories = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [co, setCo] = useState(0);
-    const { token } = useContext(DataContext);
+    // const { token } = useContext(DataContext);
+    const token = localStorage.getItem('token');
 
     useEffect(() => {
         const fetchData = async () => {

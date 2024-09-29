@@ -66,7 +66,7 @@ const Navbar = () => {
                             </li>
                             <li>
                                 <a>
-                                    <Link to="/dashboard">Inventory</Link>
+                                    <Link to="/login">Dashboard</Link>
                                 </a>
                             </li>
                         </ul>
@@ -94,14 +94,14 @@ const Navbar = () => {
                         </li>
                         <li>
                             <a>
-                                <Link to="/dashboard">Inventory</Link>
+                                <Link to="/login">Dashboard</Link>
                             </a>
                         </li>
                     </ul>
                 </div>
                 <div className="navbar-end">
                     <div>
-                        <p> {admin && admin.admin}</p>
+                        <p> {admin?._id ? admin.admin : ''}</p>
                     </div>
                     <div className="dropdown dropdown-end">
                         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">

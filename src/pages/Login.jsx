@@ -1,19 +1,22 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer/Footer';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
+import { DataContext } from '../context/dataContext';
 
 const Login = () => {
     const { register, handleSubmit } = useForm();
+    const { setToken, setAdmin } = useContext(DataContext);
 
     const navigate = useNavigate();
     const [res, setRes] = useState(null);
     const [error, setError] = useState(null);
     const onSubmit = async (data) => {
-        console.log(data);
+        // console.log(data);
 
         // post api
 
@@ -33,12 +36,17 @@ const Login = () => {
             const { data, headers } = response;
             setRes(data);
             console.log(data);
-            toast(data.status);
+
             if (data.status === 'Log in success') {
+                toast(data.status);
                 // change the local host
                 // only here token is add or update
+                console.log(headers.authorization, ' sign in token');
                 localStorage.setItem('token', `bearer ${headers.authorization}`);
+                setToken(`bearer ${headers.authorization}`);
+                setAdmin(data.admin);
 
+                // navigate('/dashboard', { state: '' });
                 navigate('/dashboard');
             } else {
                 toast('Invalid Login credentials');

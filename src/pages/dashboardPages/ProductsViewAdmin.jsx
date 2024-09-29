@@ -89,7 +89,7 @@ const ProductViewAdmin = () => {
                     {pro?.length > 0 &&
                         pro.map((cat) => {
                             return (
-                                <div key={cat._id}>
+                                <div key={cat._id} className="h-60">
                                     <p className="text-2xl font-bold text-indigo-600">
                                         {cat.name} Category
                                     </p>
