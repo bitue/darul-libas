@@ -9,7 +9,7 @@ const AllQuery = () => {
     const [loading, setLoading] = useState(true);
     const [err, setErr] = useState(null);
     const [co, setCo] = useState(0);
-    const { token } = useContext(DataContext);
+    // const { token } = useContext(DataContext);
 
     const getData = async () => {
         try {

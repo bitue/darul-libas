@@ -9,6 +9,7 @@ export const useToken = () => {
 
     const saveToken = (token) => {
         localStorage.setItem('token', token);
+
         setToken(token);
     };
 
