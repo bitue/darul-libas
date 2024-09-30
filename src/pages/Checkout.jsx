@@ -52,6 +52,18 @@ const Checkout = () => {
                 productSize
             });
         }
+        if (productInfoArray.length === 0) {
+            toast('product Quantity is empty ');
+            return;
+        }
+        // check if productQty is empty
+        for (const i of productInfoArray) {
+            if (i.productQty === 0) {
+                toast(`Please check ${i.productName} quantity is ${i.productQty}`);
+                return;
+            }
+        }
+
         console.log(data);
 
         const url = 'https://darullibas-backend.onrender.com/order/makeOrder';

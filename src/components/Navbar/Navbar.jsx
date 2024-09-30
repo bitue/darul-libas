@@ -66,7 +66,7 @@ const Navbar = () => {
                             </li>
                             <li>
                                 <a>
-                                    <Link to="/login">Dashboard</Link>
+                                    <Link to="/dashboard">Dashboard</Link>
                                 </a>
                             </li>
                         </ul>
@@ -94,7 +94,7 @@ const Navbar = () => {
                         </li>
                         <li>
                             <a>
-                                <Link to="/login">Dashboard</Link>
+                                <Link to="/dashboard">Dashboard</Link>
                             </a>
                         </li>
                     </ul>
@@ -134,12 +134,14 @@ const Navbar = () => {
                                     {productList.length} Items
                                 </span>
                                 <span className="text-info">Subtotal: {sum} TK</span>
-                                <div className="card-actions">
-                                    <button className="btn btn-primary btn-block">
-                                        {' '}
-                                        <Link to="/checkout">Checkout</Link>
-                                    </button>
-                                </div>
+                                {productList.length && (
+                                    <div className="card-actions">
+                                        <button className="btn btn-primary btn-block">
+                                            {' '}
+                                            <Link to="/checkout">Checkout</Link>
+                                        </button>
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
